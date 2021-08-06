@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "509950980000",
+    "firebase_url": "https://cali-pro-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "cali-pro",
+    "storage_bucket": "cali-pro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509950980000:android:cfbcde6bdb212489067ec5",
+        "android_client_info": {
+          "package_name": "com.example.cali_pro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "509950980000-kehbe75gum4tf6jh956pio7gathv8lid.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBEdPNmUX9WLs8kCFmnisvH49JmNhZVwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "509950980000-kehbe75gum4tf6jh956pio7gathv8lid.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
