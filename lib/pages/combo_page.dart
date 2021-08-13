@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '/models/skill_model.dart';
 
 class ComboPage extends StatelessWidget {
@@ -14,7 +15,15 @@ class ComboPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Training App'),
+        title: Text(
+          "CaliPro",
+          style: GoogleFonts.lobster(
+            fontSize: 40,
+            fontWeight: FontWeight.w500,
+            color: Colors.amber[800],
+            letterSpacing: 1.8,
+          ),
+        ),
         backgroundColor: Colors.grey[800],
       ),
       body: Combo(
@@ -111,6 +120,8 @@ class _ComboState extends State<Combo> {
                 max: widget.skills.length.toDouble(),
                 divisions: widget.skills.length - 2,
                 label: currentSliderValue.round().toString(),
+                activeColor: Colors.red[600],
+                inactiveColor: Colors.red[200],
                 onChanged: (double value) {
                   setState(() {
                     currentSliderValue = value;

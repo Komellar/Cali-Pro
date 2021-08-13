@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 
@@ -12,7 +13,15 @@ class MotivationPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          title: Text('Training App'),
+          title: Text(
+            "CaliPro",
+            style: GoogleFonts.lobster(
+              fontSize: 40,
+              fontWeight: FontWeight.w500,
+              color: Colors.amber[800],
+              letterSpacing: 1.8,
+            ),
+          ),
           backgroundColor: Colors.grey[800],
         ),
         body: Container(

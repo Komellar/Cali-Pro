@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '/models/skill_model.dart';
 import 'combo_page.dart';
-
-enum WhyFarther { harder, smarter, selfStarter, tradingCharter }
 
 class SkillsPage extends StatefulWidget {
   const SkillsPage({Key? key}) : super(key: key);
@@ -45,11 +44,19 @@ class _SkillsPageState extends State<SkillsPage> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Training App'),
+        title: Text(
+          "CaliPro",
+          style: GoogleFonts.lobster(
+            fontSize: 40,
+            fontWeight: FontWeight.w500,
+            color: Colors.amber[800],
+            letterSpacing: 1.8,
+          ),
+        ),
         backgroundColor: Colors.grey[800],
         actions: <Widget>[
           PopupMenuButton(
-            padding: EdgeInsets.only(right: 10.0),
+            padding: EdgeInsets.only(right: 15.0),
             icon: Icon(Icons.tune),
             tooltip: 'Filter',
             itemBuilder: (BuildContext bc) => [
@@ -161,7 +168,7 @@ class _SkillsPageState extends State<SkillsPage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Text('NEXT'),
+        child: Icon(Icons.arrow_forward),
         onPressed: () {
           List<SkillModel> tempCheckedSkillsList =
           filteredList.where((i) => i.isCheck).toList();
