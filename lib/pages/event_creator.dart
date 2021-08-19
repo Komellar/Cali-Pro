@@ -1,7 +1,5 @@
 import 'dart:math';
 
-import 'package:cali_pro/models/event_model.dart';
-import 'package:cali_pro/pages/profile_page.dart';
 import 'package:cali_pro/services/event_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -70,8 +68,16 @@ class _EventCreatorState extends State<EventCreator> {
         body: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text('Event Creator'),
+              Text(
+                'Event Creator',
+                style: TextStyle(
+                  fontSize: 35.0,
+                  fontWeight: FontWeight.w600
+                ),
+              ),
+              SizedBox(height: 15.0,),
               Form(
                 key: _formKey,
                 child: Column(
@@ -91,7 +97,7 @@ class _EventCreatorState extends State<EventCreator> {
                         )
                       )
                     ),
-                    SizedBox(height: 10.0,),
+                    SizedBox(height: 20.0,),
                     TextFormField(
                       controller: _placeTextController,
                       focusNode: _focusPlace,
@@ -106,52 +112,57 @@ class _EventCreatorState extends State<EventCreator> {
                             )
                         )
                     ),
-                    SizedBox(height: 35.0,),
-                    PickDateTimeWidget(callback: (val) => setState(() => _date = val)),
                     SizedBox(height: 25.0,),
+                    PickDateTimeWidget(callback: (val) => setState(() => _date = val)),
+                    SizedBox(height: 45.0,),
                     _isProcessing
                         ? CircularProgressIndicator()
-                        : ElevatedButton(
-                      onPressed: () async {
-                        _focusDescription.unfocus();
-                        _focusPlace.unfocus();
+                        : Center(
+                          child: ElevatedButton(
+                              onPressed: () async {
+                                  _focusDescription.unfocus();
+                                  _focusPlace.unfocus();
 
-                        if (_formKey.currentState!.validate()) {
-                          setState(() {
-                            _isProcessing = true;
-                          });
+                                  if (_formKey.currentState!.validate()) {
+                                    setState(() {
+                                      _isProcessing = true;
+                                    });
 
-                          // DataSnapshot snapshot;
-                          // key = snapshot.key,
-                          final nextEvent = <String, dynamic>{
-                            // 'key': snapshot.key,
-                            'description': _descriptionTextController.text,
-                            'place': _placeTextController.text,
-                            'date': DateFormat('EEEE dd.MM\nkk:mm').format(_date),
-                            'authorID': _currentUser.uid,
-                            'author': _currentUser.displayName,
-                            'image': randomImg(),
-                            'attendees': 0
-                          };
+                                    final nextEvent = <String, dynamic>{
+                                      'description': _descriptionTextController.text,
+                                      'place': _placeTextController.text,
+                                      'date': DateFormat('EEEE dd.MM\nkk:mm').format(_date),
+                                      'authorID': _currentUser.uid,
+                                      'author': _currentUser.displayName,
+                                      'image': randomImg(),
+                                      'attendees': [_currentUser.uid.toString()]
+                                    };
 
-                          _database
-                              .child('events')
-                              .push()
-                              .set(nextEvent)
-                              .then((_) => print('Event has been written!'))
-                              .catchError((error) => print('You got an error: $error'));
+                                    _database
+                                        .child('events')
+                                        .push()
+                                        .set(nextEvent)
+                                        .then((_) => print('Event has been written!'))
+                                        .catchError((error) => print('You got an error: $error'));
 
-                          setState(() {
-                            _isProcessing = false;
-                          });
-                          
-                          // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => ProfilePage()));
-                          Navigator.pop(context);
-                        }
-                      },
-                      child: Text('Post Event'),
-                    )
+                                    setState(() {
+                                      _isProcessing = false;
+                                    });
 
+                                    Navigator.pop(context);
+                                  }
+                              },
+                            style: ElevatedButton.styleFrom(
+                              elevation: 5.0
+                            ),
+                            child: Text(
+                                'Post Event',
+                                style: TextStyle(
+                                  fontSize: 30.0
+                                ),
+                            ),
+                          ),
+                        )
                   ],
                 ),
               )

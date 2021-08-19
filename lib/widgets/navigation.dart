@@ -2,12 +2,10 @@ import 'package:cali_pro/pages/home_page.dart';
 import 'package:cali_pro/pages/motivation_page.dart';
 import 'package:cali_pro/pages/profile_page.dart';
 import 'package:cali_pro/pages/skills_list.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 
 class Navigation extends StatefulWidget {
-  // final User user;
   const Navigation({Key? key}) : super(key: key);
 
   @override
@@ -15,22 +13,13 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
-
   int _selectedIndex = 0;
-  // late User _currentUser;
-
-  // @override
-  // void initState() {
-  //   _currentUser = widget.user;
-  //   super.initState();
-  // }
 
   List<Widget> _navigationOptions = <Widget>[
     HomePage(),
     SkillsPage(),
     MotivationPage(),
     ProfilePage(),
-    // ProfilePage(uer: _currentUser),
   ];
 
   void _onItemTapped(int index) {
@@ -53,11 +42,11 @@ class _NavigationState extends State<Navigation> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: Icon(Icons.casino),
             label: 'Combos',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.emoji_events),
             label: 'Motivation',
           ),
           BottomNavigationBarItem(

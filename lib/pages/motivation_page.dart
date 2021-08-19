@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
-import 'package:intl/intl.dart';
 
 class MotivationPage extends StatelessWidget {
   const MotivationPage({Key? key}) : super(key: key);
@@ -73,23 +72,27 @@ class _QuoteState extends State<Quote> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        SizedBox(
-          height: 170.0,
-        ),
         Center(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 12.0),
-            child: Text(this.quote,
-              style: TextStyle(color: Colors.grey[200], fontSize: 33.0, fontWeight: FontWeight.w600 ),
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              this.quote,
+              style: GoogleFonts.anton(
+                  color: Colors.grey[200],
+                  fontSize: 33.0,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 1.5
+              ),
               softWrap: true,
               textAlign: TextAlign.center,
             ),
           ),
         ),
         SizedBox(
-          height: 160.0,
+          height: 100.0,
         ),
         Container(
           alignment: Alignment.bottomCenter,
@@ -108,7 +111,10 @@ class _QuoteState extends State<Quote> {
             },
             child: Text(
               'New Quote',
-              style: TextStyle(fontSize: 20.0, color: Colors.grey[500]),
+              style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.grey[100]
+              ),
             ),
           ),
         )

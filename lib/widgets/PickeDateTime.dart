@@ -39,7 +39,6 @@ class _PickDateTimeWidgetState extends State<PickDateTimeWidget> {
         ),
         const SizedBox(height: 8),
         Container(
-          margin: const EdgeInsets.only(right : 80.0),
           padding: const EdgeInsets.symmetric(horizontal: 60.0),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -80,24 +79,20 @@ class _PickDateTimeWidgetState extends State<PickDateTimeWidget> {
   }
 
   Future<DateTime?> pickDate(BuildContext context) async {
-    // final initialDate = DateTime.now();
     final newDate = await showDatePicker(
       context: context,
       initialDate: dateTime,
       firstDate: DateTime(DateTime.now().year),
       lastDate: DateTime(DateTime.now().year + 1),
     );
-    // if (newDate == null) return null;
     return newDate;
   }
 
   Future<TimeOfDay?> pickTime(BuildContext context) async {
-    // final initialTime = TimeOfDay(hour: 12, minute: 0);
     final newTime = await showTimePicker(
         context: context,
         initialTime: TimeOfDay(hour: dateTime.hour, minute:dateTime.minute)
     );
-
     return newTime;
   }
 

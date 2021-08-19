@@ -1,16 +1,8 @@
-# cali_pro
+# CaliPro app
 
-A new Flutter application.
+Flutter application for calisthenics community.
+* App uses firebase to store events published by users.
+* User can join each of event and see the live quantity of attendees.
+* There is a section where you can get some motivation by checking some affirmations published by https://www.affirmations.dev/
+* And finally you have a possibility to create your own combo from chosen skills.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

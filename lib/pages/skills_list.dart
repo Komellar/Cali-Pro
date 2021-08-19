@@ -56,8 +56,8 @@ class _SkillsPageState extends State<SkillsPage> {
         backgroundColor: Colors.grey[800],
         actions: <Widget>[
           PopupMenuButton(
-            padding: EdgeInsets.only(right: 15.0),
-            icon: Icon(Icons.tune),
+            padding: EdgeInsets.only(right: 20.0),
+            icon: Icon(Icons.tune, color: Colors.grey[200],),
             tooltip: 'Filter',
             itemBuilder: (BuildContext bc) => [
               PopupMenuItem(
@@ -65,7 +65,7 @@ class _SkillsPageState extends State<SkillsPage> {
                     children: [
                       Icon( Icons.emoji_events, color: Colors.grey),
                       SizedBox( width: 10.0),
-                      Text("All"),
+                      Text("All types"),
                     ],
                   ), value: "all"),
               PopupMenuItem(

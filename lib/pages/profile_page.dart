@@ -1,17 +1,11 @@
 import 'package:cali_pro/pages/event_creator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 
 import 'login_page.dart';
-import 'motivation_page.dart';
 
 class ProfilePage extends StatefulWidget {
-  // final User user;
-
-  // const ProfilePage({required this.user});
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
@@ -35,8 +29,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-  final _database = FirebaseDatabase.instance.reference();
-
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -53,13 +45,16 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
               Text(
-                'Name: ${_currentUser.displayName}',
+                'Username: ${_currentUser.displayName}',
+                style: TextStyle(
+                  fontSize: 20.0
+                ),
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 46.0),
               _isSigningOut
                   ? CircularProgressIndicator()
                   : ElevatedButton(
@@ -79,42 +74,32 @@ class _ProfilePageState extends State<ProfilePage> {
                 },
                 child: Text('Sign out'),
                 style: ElevatedButton.styleFrom(
+                  elevation: 2.0,
                   primary: Colors.red[200],
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
               ),
-              SizedBox(height: 50.0,),
+              SizedBox(height: 150.0,),
               ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => EventCreator())
                     );
                   },
-                  child: Text('Add New Event')
+                  style: ElevatedButton.styleFrom(
+                    elevation: 5.0,
+                    padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0)
+                  ),
+                  child: Text(
+                      'Add New Event',
+                      style: TextStyle(
+                        fontSize: 25.0,
+                      ),
+                  )
               ),
               SizedBox(height: 20),
-              // OutlinedButton(
-              //   style: OutlinedButton.styleFrom(
-              //       primary: Colors.white,
-              //       side: BorderSide(color: Colors.black, width: 1.5),
-              //       backgroundColor: Color.fromRGBO(0, 0, 0, 0.6),
-              //       padding: EdgeInsets.all(15.0),
-              //       textStyle: TextStyle(
-              //           fontSize: 16,
-              //           fontWeight: FontWeight.w600,
-              //           letterSpacing: 2.0
-              //       )
-              //   ),
-              //   onPressed: () {
-              //     Navigator.push(context, MaterialPageRoute(
-              //         builder: (context) => MotivationPage()
-              //     )
-              //     );
-              //   },
-              //   child: Text('Get Motivation'),
-              // ),
             ],
           ),
         ),

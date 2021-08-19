@@ -1,4 +1,3 @@
-import 'package:cali_pro/pages/profile_page.dart';
 import 'package:cali_pro/services/fire_auth.dart';
 import 'package:cali_pro/services/login_validator.dart';
 import 'package:cali_pro/widgets/navigation.dart';
@@ -137,9 +136,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                         .pushAndRemoveUntil(
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            Navigation(
-                                                // user: user
-                                            ),
+                                            Navigation(),
                                       ),
                                       ModalRoute.withName('/'),
                                     );

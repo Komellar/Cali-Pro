@@ -1,12 +1,8 @@
-import 'dart:math';
-
 import 'package:cali_pro/models/event_model.dart';
 import 'package:cali_pro/models/event_stream_publisher.dart';
 import 'package:cali_pro/pages/event_page.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 
 import 'motivation_page.dart';
 
@@ -50,19 +46,6 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // SizedBox(height: 15,),
-                  // Text(
-                  //   "CaliPro",
-                  //   style: GoogleFonts.lobster(
-                  //     fontSize: 80,
-                  //     fontWeight: FontWeight.w500,
-                  //     // color: Colors.grey[50],
-                  //     // color: Colors.orange[500],
-                  //     color: Colors.amber[800],
-                  //     letterSpacing: 1.8,
-                  //   ),
-                  // ),
-                  // SizedBox(height: 30,),
                   OutlinedButton(
                     style: OutlinedButton.styleFrom(
                         primary: Colors.white,
@@ -102,10 +85,11 @@ class HomePage extends StatelessWidget {
               builder: (context, snapshot) {
                 final tilesList = <GestureDetector> [];
                 if (snapshot.hasData) {
-                  print("YYEEESS We have data");
                   final myEvents = snapshot.data as List<EventModel>;
                   tilesList.addAll(
                     myEvents.map((nextEvent) {
+                      double descFontSize = nextEvent.description.length < 40? 20.0 : 15.0;
+                      double placeFontSize = nextEvent.place.length < 10? 14.0 : 12.0;
                       return GestureDetector(
                         onTap: () {
                           Navigator.push(
@@ -136,14 +120,14 @@ class HomePage extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        Text(nextEvent.description, textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, color: Colors.grey[800], fontWeight: FontWeight.w600)),
+                                        Text(nextEvent.description, textAlign: TextAlign.center, style: TextStyle(fontSize: descFontSize, color: Colors.grey[800], fontWeight: FontWeight.w600)),
                                         SizedBox(height: 15.0),
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
-                                              Text(nextEvent.date, textAlign: TextAlign.center, style: TextStyle(color: Colors.grey[600], fontWeight: FontWeight.w600)),
+                                              Text(nextEvent.date, textAlign: TextAlign.center, style: TextStyle(fontSize: placeFontSize, color: Colors.grey[600], fontWeight: FontWeight.w600)),
                                               SizedBox(width: 25.0,),
-                                              Text(nextEvent.place, style: TextStyle(color: Colors.grey[600], fontWeight: FontWeight.w600)),
+                                              Text(nextEvent.place, style: TextStyle(fontSize: placeFontSize, color: Colors.grey[600], fontWeight: FontWeight.w600)),
                                           ],
                                         )
                                       ],
@@ -155,8 +139,6 @@ class HomePage extends StatelessWidget {
                       );
                     }),
                   );
-                } else {
-                  print('ERROR or No Data');
                 }
                 return Expanded(
                   child: ListView(
@@ -168,52 +150,6 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  String randomImg() {
-    String img = (Random().nextInt(12) + 1).toString();
-    return 'assets/workout$img.jpg';
-  }
-
-}
-
-class EventsView extends StatefulWidget {
-  const EventsView({Key? key}) : super(key: key);
-
-  @override
-  _EventsViewState createState() => _EventsViewState();
-}
-
-class _EventsViewState extends State<EventsView> {
-  final _database = FirebaseDatabase.instance.reference();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: StreamBuilder(
-        stream: EventStreamPublisher().getEventStream(),
-        builder: (context, snapshot) {
-          final tilesList = <ListTile> [];
-          if (snapshot.hasData) {
-            final myTodos = snapshot.data as List<EventModel>;
-            tilesList.addAll(
-              myTodos.map((nextEvent) {
-                return ListTile(
-                  title: Text(nextEvent.description),
-                  subtitle: Text(nextEvent.place),
-                  // trailing: Text(DateFormat('EEE d MMM').format(nextEvent.date)),
-                );
-              }),
-            );
-          }
-          return Expanded(
-            child: ListView(
-                children: tilesList
-            ),
-          );
-        },
-      )
     );
   }
 }

@@ -63,9 +63,6 @@ class _ComboState extends State<Combo> {
       comboList.add(tempSkillList[result]);
       tempSkillList.removeAt(result);
     }
-    Iterable<String> ist = comboList.map((e) => e.title);
-    print(ist);
-
     return comboList;
   }
 
@@ -182,14 +179,12 @@ class _ComboState extends State<Combo> {
         right: 15.0,
         child: FloatingActionButton(
           onPressed: () {
-            print('----------');
             List<SkillModel> combo = getCombo();
             setState(() {
               comboList = combo;
             });
           },
           child: Icon(Icons.refresh),
-          // child: Text('Reroll'),
         ),
       )
     ]);
